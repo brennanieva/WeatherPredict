@@ -1,5 +1,9 @@
 # WeatherPredict
 
+
+10/15/2019
+
+
 Goals:
 guessing tomorrow's temperature based on yesterday's and today's
 estimating probability of precipitation and/or cloud cover based on barometric pressure

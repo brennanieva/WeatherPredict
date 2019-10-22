@@ -1,3 +1,8 @@
+#Author: BrennaNieva
+#Date: 10/15/2019
+#Description: CSCI 141 [40828] ML Project for Weather Prediction
+
+
 
 ###############################################################################
 # GLOBAL CONSTANT
