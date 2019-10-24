@@ -32,9 +32,16 @@ Project designed to take a year's worth of weather data from Bellingham,WA (9822
     * Incomplete data August 2019 to October 2019
 <h3>10/20/2019</h3>
 
-data downloaded and into some format that can be manipulated easily
 **Goals**
-try out some very simple predictions for temperature, such as:
-Assume temp will be the same: tomorrow_prediction = today
-Assume temp will continue the trend from the past two days: tomorrow_prediction = today + (today - yesterday).
+* try out some very simple predictions for temperature, such as:
+* Assume temp will be the same: tomorrow_prediction = today
+* Assume temp will continue the trend from the past two days: tomorrow_prediction = today + (today - yesterday).
+
+**Released:**
+* Data sorted
+    * TrainingSets
+        * Weather2019
+        * Jan2018
+    * TestSets
+        * Feb2018
 </p>
