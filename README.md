@@ -11,13 +11,13 @@
 <h2>Usage</h2>
 <h2>Contributing</h2>
 <h2>Credits</h2>
-</h3>License</h2>
+<h2>License</h2>
 
 
 <H2>Updates</h2>
-<h3>10/15/2019<h3>
+<h3>10/15/2019</h3>
 
-<p>
+
 **Goals:**
 * guessing tomorrow's temperature based on yesterday's and today's
 * estimating probability of precipitation and/or cloud cover based on barometric pressure
