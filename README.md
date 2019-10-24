@@ -1,17 +1,14 @@
 <H1>Weather Predict</H1>
-<H2>CSCI 141 "Research Project" </H2>
 <H2>Brenna Nieva</H2>
 
 
 
 <H2>Description</H2>
+**CSCI 141 "Research Project"**
+Project designed to take a year's worth of weather data from Bellingham,WA (98225) and preform weather prediction.
 
 <H2>Table of Contents</H2>
 <h2>Installation</h2>
-<h2>Usage</h2>
-<h2>Contributing</h2>
-<h2>Credits</h2>
-<h2>License</h2>
 
 
 <H2>Updates</h2>
