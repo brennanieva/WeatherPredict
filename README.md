@@ -12,6 +12,13 @@ Project designed to take a year's worth of weather data from Bellingham,WA (9822
 
 
 <H2>Updates</h2>
+**Data:**
+* daily high and low temperatures
+* pressure
+* wind direction
+* cloud cover
+* precipitation
+
 <h3>10/15/2019</h3>
 
 
@@ -20,19 +27,13 @@ Project designed to take a year's worth of weather data from Bellingham,WA (9822
 * estimating probability of precipitation and/or cloud cover based on barometric pressure
 * using a nearest-neighbor classification to predict what the weather will be tomorrow
 
-**Data:**
-*daily high and low temperatures
-*pressure
-*wind direction
-*cloud cover
-*precipitation
+**Released:**
+* Full data available from Jan 2019 to August 2019
+    * Incomplete data August 2019 to October 2019
+<h3>10/20/2019</h3>
 
-I'd start with a year's worth of daily data for Bellingham and start trying out some ideas on that.
-
-
-10/20
 data downloaded and into some format that can be manipulated easily
-
+**Goals**
 try out some very simple predictions for temperature, such as:
 Assume temp will be the same: tomorrow_prediction = today
 Assume temp will continue the trend from the past two days: tomorrow_prediction = today + (today - yesterday).
