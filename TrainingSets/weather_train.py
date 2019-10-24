@@ -64,14 +64,14 @@ def make_training_set(weather2019):
     return weather_records
 
 #Executes function and prints the results
-print(make_training_set('TrainingSets/weather2019.csv'))
+print(make_training_set('weather2019.csv'))
 
 
 
 
 #Sample calculations
-training_data = "TrainingSets/weather2019.csv"
-train_set = make_training_set('TrainingSets/weather2019.csv')
+training_data = "weather2019.csv"
+train_set = make_training_set('weather2019.csv')
 
 #DateTime
 #Take yesterday's temperature - todays
