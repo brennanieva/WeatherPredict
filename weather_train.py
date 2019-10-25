@@ -64,7 +64,7 @@ def make_training_set(weather2019):
     return weather_records
 
 #Executes function and prints the results
-print(make_training_set('TrainingSets/weather2019.csv'))
+# print(make_training_set('TrainingSets/weather2019.csv'))
 
 
 
@@ -75,9 +75,15 @@ train_set = make_training_set('TrainingSets/weather2019.csv')
 
 #DateTime
 #Take yesterday's temperature - todays
+
+
 # for key, value in train_set.make_training_set():
 #     if key is 'Date': #'name' is the key we wish to get the value from
 #         print(value) # print its value
 
+
+# print(make_training_set(weather2019).keys())
 # today = train_set["Date"] == "2019-08-31" and train_set["Station"] == "USC00450587"
 # print (today)
+
+

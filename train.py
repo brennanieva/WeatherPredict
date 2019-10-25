@@ -16,11 +16,13 @@ ATTRS.append("TMIN")
 
 ###############################################################################
 
-def make_training_set(weather2019):
-   
+
+
+def make_training_set(Jan2019):
+
     weather_records = []
     # Read in file
-    with open(weather2019) as file:
+    with open(Jan2019) as file:
         #Skip header line in file
         next(file)
         for line in file:
@@ -33,29 +35,29 @@ def make_training_set(weather2019):
             # ATTRS to the corresponding values in the line of the file
             record = {}
 
-            # Read Station ID as an int:
+            # Read Station ID as an string:
             record[ATTRS[0]] = str(line_list[0].strip("\""))
 
             #Read Location as a string:
             record[ATTRS[1]] = str(line_list[1].strip("\""))
 
             #Read Date as a string:
-            record[ATTRS[2]] = str(line_list[6].strip("\""))
+            record[ATTRS[2]] = str(line_list[3].strip("\""))
 
             #Read Precipitation as a float:
-            record[ATTRS[3]] = str(line_list[9].strip("\""))
+            record[ATTRS[3]] = str(line_list[4].strip("\""))
 
             #Checks if TMAX and TMIN are empty, if so, sets their value to 0
             #Avoids list overflow error
-            if line_list[12].strip("\"") == '':
-                record[ATTRS[4]] = 0;
-                record[ATTRS[5]] = 0;
+            if line_list[5].strip("\"") == '':
+                record[ATTRS[4]] = 0
+                record[ATTRS[5]] = 0
             else:
-                #Read TMAX as a string:
-                record[ATTRS[4]] = int(line_list[12].strip("\""))
+                #Read TMAX as a int:
+                record[ATTRS[4]] = int(line_list[5].strip("\""))
 
-                #Read TMIN as a string:
-                record[ATTRS[5]] = int(line_list[13].strip("\""))
+                #Read TMIN as a int:
+                record[ATTRS[5]] = int(line_list[6].strip("\""))
 
             # Add the dictionary to a list
             weather_records.append(record)
@@ -64,14 +66,13 @@ def make_training_set(weather2019):
     return weather_records
 
 #Executes function and prints the results
-# print(make_training_set('weather2019.csv'))
-
-
+training_data = (make_training_set('TrainingSets/Jan2019.csv'))
+print(training_data)
 
 
 #Sample calculations
-training_data = "weather2019.csv"
-train_set = make_training_set('weather2019.csv')
+# training_data = "TrainingSets/Jan2019.csv"
+# train_set = make_training_set(Jan2019)
 
 #DateTime
 #Take yesterday's temperature - todays

@@ -6,6 +6,7 @@ Brenna Nieva
 <h2>Description</h2>
 
 **CSCI 141 ""Research Project""**
+
 Project designed to take a year's worth of weather data from Bellingham,WA (98225) and preform weather prediction.
 
 
