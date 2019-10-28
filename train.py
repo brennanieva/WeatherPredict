@@ -19,7 +19,7 @@ ATTRS.append("TMIN")
 
 
 def make_training_set(Jan2019):
-""" Weather_records creates a dictionary with attributes labeled Station, Location, Date, Precipitation, Max Temperature (TMAX) and Minimum Temperature(TMIN)"""
+    """ Weather_records creates a dictionary with attributes labeled Station, Location, Date, Precipitation, Max Temperature (TMAX) and Minimum Temperature(TMIN)"""
     weather_records = []
     # Read in file
     with open(Jan2019) as file:
@@ -73,13 +73,6 @@ def make_training_set(Jan2019):
 training_data = (make_training_set('TrainingSets/Jan2019.csv'))
 print(training_data)
 
-
-
-    # today = "2019-01-04"
-    # for i in range(len(training_data)):
-    #     if training_data[i].get('Date')[8:] == today[8:]:
-    #         print("Does This Work???? bc idk man")
-    #         print(training_data[i].get("TMAX"))
 
 currentDate = "2019-01-02"
 ed = 0.0 #Ignore
