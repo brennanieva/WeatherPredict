@@ -19,7 +19,7 @@ ATTRS.append("TMIN")
 
 
 def make_training_set(Jan2019):
-
+""" Weather_records creates a dictionary with attributes labeled Station, Location, Date, Precipitation, Max Temperature (TMAX) and Minimum Temperature(TMIN)"""
     weather_records = []
     # Read in file
     with open(Jan2019) as file:
@@ -65,20 +65,33 @@ def make_training_set(Jan2019):
 
     return weather_records
 
+#Ignore
+#euclidean_distance = math.sqrt((feature[0]-p[0])**2 +(feature[1]-p[1])**2
+#Ignore
+
 #Executes function and prints the results
 training_data = (make_training_set('TrainingSets/Jan2019.csv'))
 print(training_data)
 
 
+
+    # today = "2019-01-04"
+    # for i in range(len(training_data)):
+    #     if training_data[i].get('Date')[8:] == today[8:]:
+    #         print("Does This Work???? bc idk man")
+    #         print(training_data[i].get("TMAX"))
+
+currentDate = "2019-01-02"
+ed = 0.0 #Ignore
+
+for i in range(len(training_data)):
+    if training_data[i].get('Date')[8:] == currentDate[8:]:
+       
+        TodayTempDifference = (training_data[i].get('TMAX')) - (training_data[i].get('TMIN'))
+        print("TMAX", training_data[i].get('TMAX'))
+        print("TMIN", training_data[i].get('TMIN'))
+        print (TodayTempDifference)
 #Sample calculations
 # training_data = "TrainingSets/Jan2019.csv"
 # train_set = make_training_set(Jan2019)
 
-#DateTime
-#Take yesterday's temperature - todays
-# for key, value in train_set.make_training_set():
-#     if key is 'Date': #'name' is the key we wish to get the value from
-#         print(value) # print its value
-
-# today = train_set["Date"] == "2019-08-31" and train_set["Station"] == "USC00450587"
-# print (today)
