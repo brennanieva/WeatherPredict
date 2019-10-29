@@ -19,7 +19,9 @@ ATTRS.append("TMIN")
 
 
 def make_training_set(Jan2019):
-    """ Weather_records creates a dictionary with attributes labeled Station, Location, Date, Precipitation, Max Temperature (TMAX) and Minimum Temperature(TMIN)"""
+    """ Compiles a training set from JAN2019 (CSV file) and creates dictionary (weather_records) with attributes labeled Station, Location, Date, Precipitation, Max Temperature (TMAX) and Minimum Temperature(TMIN)
+    
+    """
     weather_records = []
     # Read in file
     with open(Jan2019) as file:
@@ -71,20 +73,56 @@ def make_training_set(Jan2019):
 
 #Executes function and prints the results
 training_data = (make_training_set('TrainingSets/Jan2019.csv'))
-print(training_data)
+# print(training_data)
 
 
-currentDate = "2019-01-02"
-ed = 0.0 #Ignore
+today = "2019-01-16"
+yesterday = "2019-01-15" 
+tomorrow = "2019-01-17"
+
+
+#def calculations(Date)
+#Assumes that weather is linear
+
+
+#Calculates single date's temp difference
 
 for i in range(len(training_data)):
-    if training_data[i].get('Date')[8:] == currentDate[8:]:
-       
+    #Yesterday's data
+    if training_data[i].get('Date')[8:]  == yesterday[8:]:
+        YesterdayTempDifference = (training_data[i].get('TMAX')) - (training_data[i].get('TMIN'))
+
+        print("Yesterday: ", yesterday)
+        print("TMAX: ", training_data[i].get('TMAX'))
+        print("TMIN: ", training_data[i].get('TMIN'))
+        yesterday_tmax = int(training_data[i].get('TMAX'))
+        yesterday_tmin = int(training_data[i].get('TMIN'))
+        print ("Yesterday's Temp Difference: ", YesterdayTempDifference)
+
+
+    #Today's data
+    if training_data[i].get('Date')[8:] == today[8:]:
         TodayTempDifference = (training_data[i].get('TMAX')) - (training_data[i].get('TMIN'))
-        print("TMAX", training_data[i].get('TMAX'))
-        print("TMIN", training_data[i].get('TMIN'))
-        print (TodayTempDifference)
-#Sample calculations
-# training_data = "TrainingSets/Jan2019.csv"
-# train_set = make_training_set(Jan2019)
+
+        print("Today: ", today)
+        print("TMAX: ", training_data[i].get('TMAX'))
+        print("TMIN: ", training_data[i].get('TMIN'))
+        
+        today_tmax = int(training_data[i].get('TMAX'))
+        today_tmin = int(training_data[i].get('TMIN'))
+        print ("Today's Temp Difference: ", TodayTempDifference)
+
+
+
+
+        TomorrowMax = today_tmax + (today_tmax - yesterday_tmax )
+        print("Tomorrows Max Temp?: ", TomorrowMax)
+
+
+
+        
+
+
+
+
 

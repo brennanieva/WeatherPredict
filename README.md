@@ -48,3 +48,4 @@ Project designed to take a year's worth of weather data from Bellingham,WA (9822
         * Jan2018
     * TestSets
         * Feb2018
+* Simple Calculations 
