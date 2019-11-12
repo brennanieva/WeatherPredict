@@ -1,0 +1,14 @@
+
+
+for i in range(1, len(training_data)):
+    today = training_data[i]
+    yesterday = training_data[i-1]
+
+    lin_predictions.append(predict_linear(yesterday))
+    eq_predictions.append(predict_equal(yesterday))
+
+    lin_errors.append(compare_predictions(lin_pred, today))
+    eq_errors.append(compare_predictions(eq_pred, today))
+
+
+avg_error = compute_mean(lin_errors)
