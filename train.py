@@ -91,12 +91,11 @@ training_data = (make_training_set('TrainingSets/Jan2019.csv'))
 
 
 today = "2019-01-16"
-yesterday = "2019-01-15" 
-tomorrow = "2019-01-17"
+today_date = int("2019-01-16" [8:10])
+yesterday = "2019-01-%i" % (today_date - 1)
+tomorrow = "2019-01-%i" % (today_date + 1)
 
 
-#def calculations(Date)
-#Assumes that weather is linear
 
 
 #Calculates single date's temp difference
@@ -142,7 +141,7 @@ for i in range(len(training_data)):
         error = len(range(TomorrowTempPredict,TomorrowTempReal))
             # Tomorrow_prcp = today_prcp + (today_prcp - yesterday_prcp)
 
-            
+
         print("Tomorrows Temp maybe who knows: ", TomorrowTempPredict)
         print("Tommorrow Temp for real: ", TomorrowTempReal)
         print("Margin of error: ", error)
