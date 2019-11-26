@@ -74,66 +74,96 @@ def make_training_set(Jan2019):
 
     return weather_records
 
-training_data = (make_training_set('TrainingSets/Jan2019.csv'))
+
 
 #Executes function and prints the results
 training_data = (make_training_set('TrainingSets/Jan2019.csv'))
 # print(training_data)
 
 
-today = "2019-01-16"
-today_date = int("2019-01-16" [8:10])
-yesterday = "2019-01-%i" % (today_date - 1)
-tomorrow = "2019-01-%i" % (today_date + 1)
+def compute_mean(list):
+    average = sum(list) / len(list)
+    return average
+
+def compare_predictions(predictions,today):
+
+    for i in predictions:
+        comparision =  i - int(today)
+        return comparision
+
+def predict_equal(yesterday):
+    for i in range(len(training_data)):
 
 
+        today_tmax = int(training_data[i].get('TMAX'))
+        today_tmin = int(training_data[i].get('TMIN'))
+
+        TomorrowTempPredict = int(training_data[i].get('TMAX'))
+
+        return TomorrowTempPredict
+
+        
+def predict_linear(yesterday):
+    for i in range(len(training_data)):
+ 
+
+        
+        yesterday_tmax = int(training_data[i-1].get('TMAX'))
+
+        today_tmax = int(training_data[i].get('TMAX'))
+
+        TomorrowTempPredict = today_tmax + (today_tmax - yesterday_tmax)
+        return TomorrowTempPredict
+
+
+    
 
 
 #Calculates single date's temp difference
 
+lin_predictions = []
+eq_predictions = []
+
+lin_errors = []
+eq_errors = []
+
 for i in range(len(training_data)):
-    #Yesterday's data
-    if training_data[i].get('Date')[8:]  == yesterday[8:]:
-        YesterdayTempDifference = (training_data[i].get('TMAX')) - (training_data[i].get('TMIN'))
 
-        print("Yesterday: ", yesterday)
-        print("TMAX: ", training_data[i].get('TMAX'))
-#         print("TMIN: ", training_data[i].get('TMIN'))
-        yesterday_tmax = int(training_data[i].get('TMAX'))
-        yesterday_tmin = int(training_data[i].get('TMIN'))
-        # yesterday_prcp = int(training_data[i].get('PRCP'))
-#         print ("Yesterday's Temp Difference: ", YesterdayTempDifference)
-#         print()
+    today = training_data[i]
+
+    yesterday = training_data[i-1]
+
+    today_tmax = int(training_data[i].get('TMAX'))
+    today_tmin = int(training_data[i].get('TMIN'))
 
 
-    # Today's data
-    if training_data[i].get('Date')[8:] == today[8:]:
-        TodayTempDifference = (training_data[i].get('TMAX')) - (training_data[i].get('TMIN'))
+    lin_predictions.append(predict_linear(yesterday))
 
-        print("Today: ", today)
-        print("TMAX: ", training_data[i].get('TMAX'))
-    #     print("TMIN: ", training_data[i].get('TMIN'))
-        
-        today_tmax = int(training_data[i].get('TMAX'))
-        today_tmin = int(training_data[i].get('TMIN'))
-        # today_prcp = int(training_data[i].get('PRCP'))
-    #     print ("Today's Temp Difference: ", TodayTempDifference)
+    eq_predictions.append(predict_equal(yesterday))
 
 
-        #Sample TM calculations
-        print()
-        
-        # print("Tomorrow Rainfall?: ", Tomorrow_prcp)
-
-    #Tomorrow Data
-    if training_data[i].get('Date')[8:] == tomorrow[8:]:
-        TomorrowTempPredict = today_tmax + (today_tmax - yesterday_tmax )
-        TomorrowTempReal = int(training_data[i].get('TMAX'))
-        error = len(range(TomorrowTempPredict,TomorrowTempReal))
-            # Tomorrow_prcp = today_prcp + (today_prcp - yesterday_prcp)
 
 
-        print("Tomorrows Temp maybe who knows: ", TomorrowTempPredict)
-        print("Tommorrow Temp for real: ", TomorrowTempReal)
-        print("Margin of error: ", error)
+    lin_errors.append(compare_predictions(lin_predictions, today_tmax))
+
+    eq_errors.append(compare_predictions(eq_predictions, today_tmax))
+
+
+
+avg_error = compute_mean(lin_errors)
+
+print("linear predictions: ")
+print(lin_predictions)
+print("equal predictions: ")
+print(eq_predictions)
+
+print("linear errors: ")
+print(lin_errors)
+
+print("equal errors: ")
+print(eq_errors)
+
+print("Average error: ")
+print(avg_error)
+
 
