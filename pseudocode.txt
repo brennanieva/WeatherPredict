@@ -12,3 +12,15 @@ for i in range(1, len(training_data)):
 
 
 avg_error = compute_mean(lin_errors)
+
+
+
+11/26 notes
+
+Prediction function "API":
+
+A prediction function should look like the following:
+
+def predict_somehow(training_data, index):
+    """ Predict the temperature of day training_data[index]
+    based on the days in training_data[:index] """
