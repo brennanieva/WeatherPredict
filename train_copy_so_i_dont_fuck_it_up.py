@@ -82,17 +82,21 @@ training_data = (make_training_set('TrainingSets/Jan2019.csv'))
 
 
 def compute_mean(list):
+    ''' Computes the average of the list'''
     average = sum(list) / len(list)
     return average
 
 def compare_predictions(predictions,today):
-
+    '''Compares the difference between the prediction and "todays" actual temperature'''
     for i in predictions:
+        
         comparision =  i - int(today)
         return comparision
 
 def predict_equal(yesterday):
+    '''Takes yesterday's temperature and calculates that tomorrows temperature will be the same as yesterday'''
     for i in range(len(training_data)):
+
 
 
         today_tmax = int(training_data[i].get('TMAX'))
@@ -104,66 +108,116 @@ def predict_equal(yesterday):
 
         
 def predict_linear(yesterday):
-    for i in range(len(training_data)):
- 
+    '''Calculates tomorrow's temperature as a linear relationship by using yesterday's temperature and the day before yesterday'''
 
-        
-        yesterday_tmax = int(training_data[i-1].get('TMAX'))
+    for i in range(len(training_data)):
 
         today_tmax = int(training_data[i].get('TMAX'))
 
-        TomorrowTempPredict = today_tmax + (today_tmax - yesterday_tmax)
+    
+        two_days_tmax = int(training_data[i-2].get('TMAX'))
+
+        yesterday_tmax = int(training_data[i-1].get('TMAX'))
+
+        TomorrowTempPredict = today_tmax + (yesterday_tmax - two_days_tmax)
         return TomorrowTempPredict
 
 
+    
     
 
 
 #Calculates single date's temp difference
 
-lin_predictions = []
-eq_predictions = []
+if __name__ == "__main__":
 
-lin_errors = []
-eq_errors = []
+    data_viewed = input("To view all weather data from Jan2019, type 'view_all' \notherwise, please specifiy a date to forecast the following day's temperature (YYYY-MM-DD):  ")
 
-for i in range(len(training_data)):
+    if data_viewed == "view_all":
+        lin_predictions = []
+        eq_predictions = []
 
-    today = training_data[i]
+        lin_errors = []
+        eq_errors = []
+        
 
-    yesterday = training_data[i-1]
+        for i in range(len(training_data)):
 
-    today_tmax = int(training_data[i].get('TMAX'))
-    today_tmin = int(training_data[i].get('TMIN'))
+            today = training_data[i]
 
+            yesterday = training_data[i-1]
 
-    lin_predictions.append(predict_linear(yesterday))
-
-    eq_predictions.append(predict_equal(yesterday))
-
-
-
-
-    lin_errors.append(compare_predictions(lin_predictions, today_tmax))
-
-    eq_errors.append(compare_predictions(eq_predictions, today_tmax))
+            today_tmax = int(training_data[i].get('TMAX'))
+            today_tmin = int(training_data[i].get('TMIN'))
 
 
+            lin_predictions.append(predict_linear(yesterday))
 
-avg_error = compute_mean(lin_errors)
+            eq_predictions.append(predict_equal(yesterday))
 
-print("linear predictions: ")
-print(lin_predictions)
-print("equal predictions: ")
-print(eq_predictions)
 
-print("linear errors: ")
-print(lin_errors)
 
-print("equal errors: ")
-print(eq_errors)
 
-print("Average error: ")
-print(avg_error)
+            lin_errors.append(compare_predictions(lin_predictions, today_tmax))
+
+            eq_errors.append(compare_predictions(eq_predictions, today_tmax))
+
+
+
+        lin_avg_error = compute_mean(lin_errors)
+        eq_avg_error = compute_mean(eq_errors)
+
+        print("linear predictions: ")
+        print(lin_predictions)
+        print("equal predictions: ")
+        print(eq_predictions)
+
+        print("linear errors: ")
+        print(lin_errors)
+
+        print("equal errors: ")
+        print(eq_errors)
+
+        print("Average error [linear]: ")
+        print(lin_avg_error)
+
+        print("Average error [equal]: ")
+        print(eq_avg_error)
+    else:
+
+        print("linear prediction: ", predict_linear((data_viewed)))
+        print("equal prediction: ", predict_equal((data_viewed)))
+
+        # print("Linear Error: ", compare_predictions(predict_linear, data_viewed))
+        # print("equal error: ", compare_predictions(predict_equal,data_viewed))
+
+
+
+
+
+
+    
+
+    
+
+
+
+
+
+
+#To DO
+
+#Take average error for equal
+#Fix Equal Temperature
+#finish CSV parse
+#csv docs
+
+
+
+
+#prediction mech to all take the same arguments so that we can easily swap them in and out
+#given all days at the index of the one you want to predict,  here are the different prediction methods and their output
+
+
 
 
