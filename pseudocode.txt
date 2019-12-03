@@ -24,3 +24,11 @@ A prediction function should look like the following:
 def predict_somehow(training_data, index):
     """ Predict the temperature of day training_data[index]
     based on the days in training_data[:index] """
+
+
+12/3 notes
+
+- avoid referencing global variables; give prediction functions the interface described above
+- csv file parser
+- compute mean absolute error instead of mean signed error
+- do calculations on floating point numbers instead of ints
