@@ -95,32 +95,28 @@ def compare_predictions(predictions,today):
 
 def predict_equal(yesterday):
     '''Takes yesterday's temperature and calculates that tomorrows temperature will be the same as yesterday'''
-    for i in range(len(training_data)):
+    
 
+    
 
+    TomorrowTempPredict = int(training_data[i-1].get('TMAX'))
 
-        today_tmax = int(training_data[i].get('TMAX'))
-        today_tmin = int(training_data[i].get('TMIN'))
-
-        TomorrowTempPredict = int(training_data[i].get('TMAX'))
-
-        return TomorrowTempPredict
+    return TomorrowTempPredict
 
         
 def predict_linear(yesterday):
     '''Calculates tomorrow's temperature as a linear relationship by using yesterday's temperature and the day before yesterday'''
 
-    for i in range(len(training_data)):
-
-        today_tmax = int(training_data[i].get('TMAX'))
+    yesterday = int(training_data[i-1].get('TMAX'))
+   
+    today_tmax = int(training_data[i].get('TMAX'))
 
     
-        two_days_tmax = int(training_data[i-2].get('TMAX'))
+    two_days_tmax = int(training_data[i-2].get('TMAX'))
 
-        yesterday_tmax = int(training_data[i-1].get('TMAX'))
 
-        TomorrowTempPredict = today_tmax + (yesterday_tmax - two_days_tmax)
-        return TomorrowTempPredict
+    TomorrowTempPredict = today_tmax + (yesterday - two_days_tmax)
+    return TomorrowTempPredict
 
 
     
@@ -131,35 +127,27 @@ def predict_linear(yesterday):
 
 if __name__ == "__main__":
 
-    data_viewed = input("To view all weather data from Jan2019, type 'view_all' \notherwise, please specifiy a date to forecast the following day's temperature (YYYY-MM-DD):  ")
+    data_viewed = input("To view all weather data from Jan2019, type 'view_all' \n otherwise, please specifiy a date to forecast the following day's temperature (YYYY-MM-DD):  ")
 
     if data_viewed == "view_all":
         lin_predictions = []
         eq_predictions = []
-
         lin_errors = []
         eq_errors = []
         
 
         for i in range(len(training_data)):
-
             today = training_data[i]
-
             yesterday = training_data[i-1]
 
             today_tmax = int(training_data[i].get('TMAX'))
             today_tmin = int(training_data[i].get('TMIN'))
 
 
-            lin_predictions.append(predict_linear(yesterday))
-
-            eq_predictions.append(predict_equal(yesterday))
-
-
-
+            lin_predictions.append(predict_linear(today))
+            eq_predictions.append(predict_equal(today))
 
             lin_errors.append(compare_predictions(lin_predictions, today_tmax))
-
             eq_errors.append(compare_predictions(eq_predictions, today_tmax))
 
 
@@ -183,13 +171,12 @@ if __name__ == "__main__":
 
         print("Average error [equal]: ")
         print(eq_avg_error)
+
     else:
 
         print("linear prediction: ", predict_linear((data_viewed)))
         print("equal prediction: ", predict_equal((data_viewed)))
 
-        # print("Linear Error: ", compare_predictions(predict_linear, data_viewed))
-        # print("equal error: ", compare_predictions(predict_equal,data_viewed))
 
 
 
